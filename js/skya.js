@@ -111,7 +111,47 @@ $(document).ready(function() {
 
     function PushData(event)
     {
-            alert(JSON.stringify(windowData));
+        //alert(JSON.stringify(windowData));
+        // $("#txt").innerText = JSON.stringify(windowData);
+         $("#txt").val(JSON.stringify(windowData));
+        // $("#txt").innerText = JSON.stringify(windowData);
+        // ajax            = new XMLHttpRequest();
+        // ajax.open('POST', 'http://localhost:8080/api/SKYA', false);
+        // ajax.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        // ajax.send(JSON.stringify(windowData));
+
+        $.support.cors = true;   
+        var param = JSON.stringify(windowData);
+        $.ajax({
+           url: 'https://microsoft-apiapp4aafe2cb045b495390bbc10a6e3be831.azurewebsites.net/api/SKYA?value='+param,
+           data: {
+              format: 'json'
+           },
+           error: function() {
+              //alert('<p>An error has occurred</p>');
+           },
+           dataType: 'jsonp',
+           success: function(data) {
+              alert('Success');
+           },
+           type: 'GET'
+        });
+
+        
+        // $.ajax({
+        //     url: 'https://microsoft-apiapp4aafe2cb045b495390bbc10a6e3be831.azurewebsites.net/api/SKYA?value='+param,
+        //     type: 'GET',
+        //     data:JSON.stringify(windowData),            
+        //     contentType: "application/json;charset=utf-8",
+        //     success: function (data) {
+        //         WriteResponse(data);
+        //     },
+        //     error: function (data) {
+        //         alert(data);
+        //     }
+        // });
+
+
     }
 
 }
